@@ -9,6 +9,9 @@ import UIKit
 import SceneKit
 import ARKit
 
+// 1. Your own screne + add objects
+// 2. Create your scene and add objects and its functionalities with code
+
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
@@ -22,11 +25,40 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        //Sphere
+        let sphere = SCNSphere(radius: 0.25)
         
-        // Set the scene to the view
-        sceneView.scene = scene
+        
+                //        Material
+        
+        let material = SCNMaterial()
+        material.diffuse.contents = UIImage(named: "art.scnassets/mars.jpeg")
+        
+        sphere.materials = [material]
+        
+        
+
+                //        //Node Initialization
+        
+        let node = SCNNode()
+        
+        
+        
+
+                //        Node Position,
+        
+        node.position = SCNVector3(0, 0, 1)
+        
+        
+        
+
+                //        Node Geometry
+        
+        node.geometry = sphere
+        
+        //Add to scene
+        
+        sceneView.scene.rootNode.addChildNode(node)
     }
     
     override func viewWillAppear(_ animated: Bool) {
